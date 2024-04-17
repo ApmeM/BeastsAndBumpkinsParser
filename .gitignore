@@ -1,0 +1,38 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+packages/
+
+# Run result
+Result/
+
+# User-specific files
+*.userprefs
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio profiler
+.vs/
+.vscode/
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# NuGet Packages
+*.nupkg
+*.nuget.props
+*.nuget.targets
+
+# Idea
+.idea/
+
+# Benchmarks
+BenchmarkDotNet.Artifacts/
+
+# Godot
+.mono/
+build/
+*.import
