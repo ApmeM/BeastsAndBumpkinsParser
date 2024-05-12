@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using MyONez.PipelineImporter.Tiled.ImportModels;
+using SimpleTiled;
 using SpriteViewer;
 
 namespace BBData
@@ -552,8 +552,8 @@ namespace BBData
                     TileHeight = a.Height,
                     // TileOffset = new TmxTileOffset
                     // {
-                        // X = a.Offset.X,
-                        // Y = a.Offset.Y
+                    // X = a.Offset.X,
+                    // Y = a.Offset.Y
                     // }
                 }
             ).ToList();
@@ -607,27 +607,12 @@ namespace BBData
         }
         public void Save(string path)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(TmxMap));
-            var xml = "";
-
-            using (var stringWriter = new Utf8StringWriter())
+            var fileName = $"{path}/{this.FileName.Replace(".mis", ".tmx", StringComparison.InvariantCultureIgnoreCase)}";
+            using (var f = File.OpenWrite(fileName))
             {
-                using (XmlWriter xmlWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings { Indent = true, Encoding = Encoding.UTF8 }))
-                {
-                    serializer.Serialize(xmlWriter, map);
-                    xml = stringWriter.ToString();
-                }
-            }
-
-            File.WriteAllText($"{path}/{this.FileName.Replace(".mis", ".tmx", StringComparison.InvariantCultureIgnoreCase)}", xml);
-        }
-
-        private class Utf8StringWriter : StringWriter
-        {
-            public override Encoding Encoding
-            {
-                get { return new UTF8Encoding(false); }
+                TiledHelper.Write(map, f);
             }
         }
+
     }
 }

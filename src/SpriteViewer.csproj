@@ -7,5 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.3" />
+    <PackageReference Include="Tiled" Version="1.0.0" />
   </ItemGroup>
 </Project>
