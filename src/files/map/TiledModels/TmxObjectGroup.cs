@@ -23,8 +23,21 @@ namespace MyONez.PipelineImporter.Tiled.ImportModels
         [XmlAttribute( AttributeName = "opacity" )]
         public float Opacity = 1f;
 
-        [XmlAttribute( AttributeName = "visible" )]
-        public bool Visible = true;
+        [XmlIgnore]
+        public bool Visible
+        {
+            get
+            {
+                return VisibleInt == 1;
+            }
+            set
+            {
+                VisibleInt = value ? 1 : 0;
+            }
+        }
+
+        [XmlAttribute(AttributeName = "visible")]
+        public int VisibleInt = 1;
 
         [XmlArray( "properties" )]
         [XmlArrayItem( "property" )]

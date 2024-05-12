@@ -32,6 +32,7 @@ namespace MyONez.PipelineImporter.Tiled.ImportModels
         [XmlAttribute(AttributeName = "gid")]
         public uint Gid;
 
+        [XmlIgnore]
         public bool Visible
         {
             get

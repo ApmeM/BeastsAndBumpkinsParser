@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -34,32 +33,28 @@ namespace BBData
             var height = binr.ReadByte();
 
             this.map = BuildEmptyMap(width, height);
-            var layerMap = new TmxTileLayer
-            {
-                Name = "Map",
-                Width = width,
-                Height = height,
-                Data = new TmxData
-                {
-                    Encoding = "csv",
-                    Tiles = new List<TmxDataTile>()
-                }
+
+            var layers = new Dictionary<string, List<TmxDataTile>>{
+                {"Map", new List<TmxDataTile>()},
+                {"Roads", new List<TmxDataTile>()},
+                {"Objects", new List<TmxDataTile>()},
             };
-            var objects = new List<TmxObject>();
-            var objectRoads = new List<TmxObject>();
-            map.Layers.Add(layerMap);
-            map.ObjectGroups.Add(new TmxObjectGroup
-            {
-                Name = "roads",
-                Objects = objectRoads
-            });
-            map.ObjectGroups.Add(new TmxObjectGroup
-            {
-                Name = "objects",
-                Objects = objects
-            });
-            var unknownMap = new List<uint>();
-            var unknownObjects = new List<uint>();
+            var objects = new Dictionary<string, List<TmxObject>>{
+                {"Roads", new List<TmxObject>()},
+                {"Objects", new List<TmxObject>()},
+            };
+            var unknowns = new Dictionary<string, List<uint>>{
+                {"Map", new List<uint>()},
+                {"Roads", new List<uint>()},
+                {"Objects", new List<uint>()},
+            };
+
+            for (var x = 0; x < width; x++)
+                for (var y = 0; y < height; y++)
+                    foreach (var layer in layers.Values)
+                    {
+                        layer.Add(new TmxDataTile());
+                    }
 
             for (var y = 0; y < height; y++)
             {
@@ -91,23 +86,27 @@ namespace BBData
 
                     if (gid < 0)
                     {
-                        unknownMap.Add((uint)-gid);
+                        unknowns["Map"].Add((uint)-gid);
                     }
-
-                    layerMap.Data.Tiles.Add(new TmxDataTile { Gid = gid < 0 ? 0 : (uint)gid });
+                    else
+                    {
+                        layers["Map"][x + y * width].Gid = (uint)gid;
+                    }
 
                     if (road > 0)
                     {
-                        objectRoads.Add(new TmxObject
+                        gid = map.TileSets.First(b => b.Name == "roads").FirstGid + road - 1;
+
+                        layers["Roads"][x + y * width].Gid = (uint)gid;
+                        objects["Roads"].Add(new TmxObject
                         {
                             X = x * map.TileWidth * 1.03f / 2,
                             Y = y * map.TileHeight * 1.0125f,
-                            Gid = (uint)(road > 0 ? map.TileSets.First(b => b.Name == "roads").FirstGid + road - 1 : 0),
+                            Gid = (uint)gid,
                         });
                     }
                 }
             }
-
 
             var globalArrayPointer = binr.ReadInt32();
             var arrayPointer = binr.ReadInt32();
@@ -479,11 +478,12 @@ namespace BBData
 
                 if (gid < 0)
                 {
-                    unknownObjects.Add((uint)-gid);
+                    unknowns["Objects"].Add((uint)-gid);
                 }
                 else
                 {
-                    objects.Add(new TmxObject
+                    layers["Objects"][x + y * width].Gid = gid < 0 ? 0 : (uint)gid;
+                    objects["Objects"].Add(new TmxObject
                     {
                         X = x * map.TileWidth * 1.03f / 2,
                         Y = y * map.TileHeight * 1.0125f,
@@ -492,20 +492,40 @@ namespace BBData
                 }
             }
 
-            map.ObjectGroups = map.ObjectGroups.OrderBy(a => a.Objects[0].X + a.Objects[0].Y).ToList();
+            foreach (var obj in objects)
+            {
+                map.ObjectGroups.Add(new TmxObjectGroup
+                {
+                    Name = obj.Key,
+                    Visible = obj.Key == "Objects",
+                    Objects = obj.Value.OrderBy(a => a.X + a.Y).ToList()
+                });
+            }
 
-            map.Properties = new List<TmxProperty>{
-                new TmxProperty
+            foreach (var unk in unknowns)
+            {
+                map.Properties.Add(new TmxProperty
                 {
-                    Name = "UnknownMap",
-                    Value = string.Join(",", unknownMap.Distinct().OrderBy(a => a).Where(a => a < 0))
-                },
-                new TmxProperty
+                    Name = "Unknown" + unk.Key,
+                    Value = string.Join(",", unk.Value.Distinct().OrderBy(a => a).Where(a => a < 0))
+                });
+            }
+
+            foreach (var layer in layers)
+            {
+                map.Layers.Add(new TmxTileLayer
                 {
-                    Name = "UnknownObjects",
-                    Value = string.Join(",", unknownObjects.Distinct().OrderBy(a => a).Where(a => a < 0))
-                }
-            };
+                    Name = layer.Key,
+                    Width = width,
+                    Height = height,
+                    Visible = layer.Key != "Objects",
+                    Data = new TmxData
+                    {
+                        Encoding = "csv",
+                        Tiles = layer.Value
+                    }
+                });
+            }
         }
 
         private TmxMap BuildEmptyMap(byte width, byte height)
@@ -520,7 +540,8 @@ namespace BBData
                 TileHeight = 40,
                 TileSets = new List<TmxTileSet>(),
                 Layers = new List<TmxLayer>(),
-                ObjectGroups = new List<TmxObjectGroup>()
+                ObjectGroups = new List<TmxObjectGroup>(),
+                Properties = new List<TmxProperty>()
             };
 
             map.TileSets = Program.VIDEO.result.Cast<MFBFile>().Select(a =>
@@ -529,11 +550,11 @@ namespace BBData
                     Name = a.FileName.Replace(".mfb", ""),
                     TileWidth = a.Width,
                     TileHeight = a.Height,
-                    TileOffset = new TmxTileOffset
-                    {
-                        X = a.Offset.X ,
-                        Y = a.Offset.Y
-                    }
+                    // TileOffset = new TmxTileOffset
+                    // {
+                        // X = a.Offset.X,
+                        // Y = a.Offset.Y
+                    // }
                 }
             ).ToList();
 
