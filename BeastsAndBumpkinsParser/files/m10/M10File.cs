@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -22,347 +21,286 @@ namespace BeastsAndBumpkinsParser
             //     return;
             // }
 
-            using var stream = new MemoryStream(data);
-            using var binr = new BinaryReader(stream, Encoding.ASCII);
+            using var input = new MemoryStream(data);
+            using var reader = new BinaryReader(input, Encoding.ASCII);
 
             using var output = new MemoryStream();
             using var writer = new BinaryWriter(output);
 
-            this.Initialize(binr);
-
-            short[] Samples = new short[4096];
-            uint Decoded;
-            uint SampleCount = 0;
-            do
+            if (Encoding.ASCII.GetString(reader.ReadBytes(2)) != "PT")
             {
-                Decoded = this.Decode(Samples, 4096);
-                foreach (var i in Samples.Take((int)Decoded))
-                {
-                    writer.Write(i);
-                }
-                SampleCount += Decoded;
-            } while (Decoded == 4096);
-
-            writer.BaseStream.Seek(0, SeekOrigin.Begin);
-            WriteWaveHeader(writer, 22050, 16, 1, SampleCount);
-
-            writer.BaseStream.Seek(0, SeekOrigin.Begin);
-            this.data = output.ToArray();
-        }
-
-        void WriteWaveHeader(BinaryWriter Output, uint SampleRate, ushort BitsPerSample, ushort Channels, uint NumberSamples)
-        {
-            // Write some RIFF information
-            Output.Write(new[] { 'R', 'I', 'F', 'F' });
-            Output.Write((uint)(NumberSamples * (BitsPerSample / 8) + 36));
-            Output.Write(new[] { 'W', 'A', 'V', 'E' });
-            Output.Write(new[] { 'f', 'm', 't', ' ' });
-            Output.Write((uint)16);
-
-            // Write the format chunk
-            Output.Write((ushort)1);
-            Output.Write((ushort)Channels);
-            Output.Write((uint)SampleRate);
-            Output.Write((uint)BitsPerSample / 8 * SampleRate * Channels);
-            Output.Write((ushort)(BitsPerSample / 8 * Channels));
-            Output.Write((ushort)BitsPerSample);
-
-            // Write the data information
-            Output.Write(new[] { 'd', 'a', 't', 'a' });
-            Output.Write((uint)(NumberSamples * (BitsPerSample / 8)));
-        }
-
-        SM10DecoderPrivate m_Input;
-        uint m_SampleBufferOffset;
-        uint m_SamplesDecodedSoFar;
-        uint m_TotalSampleCount;
-
-        public void Initialize(BinaryReader Input)
-        {
-            // Read the PT header
-            if (!ParsePTHeader(Input))
-            {
+                Console.WriteLine("Missing PT signature.");
                 return;
             }
 
-            // Initialize the decoder
-            m_Input = new SM10DecoderPrivate();
-            try
-            {
-                InitializeDecoder(m_Input, Input);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(this.FileName);
-                Console.WriteLine($"The decoder could not be initialized (bug in program): {ex}");
-            }
-            m_SampleBufferOffset = 432;
-            m_SamplesDecodedSoFar = 0;
+            // Read the PT header
+            var samplesCount = ParsePTHeader(reader);
+            var decoderStruct = new M10DecoderPrivate();
+            InitializeDecoder(decoderStruct, reader);
+
+            WriteWaveHeader(writer, 22050, 16, 1, samplesCount);
+
+            this.Decode(decoderStruct, writer, samplesCount);
+
+            output.Seek(0, SeekOrigin.Begin);
+            this.data = output.ToArray();
         }
 
-        bool ParsePTHeader(BinaryReader Input)
+        void WriteWaveHeader(BinaryWriter writer, uint sampleRate, ushort bitsPerSample, ushort channels, uint numberSamples)
         {
-            // Signature
-            if (Encoding.ASCII.GetString(Input.ReadBytes(2)) != "PT")
-            {
-                Console.WriteLine("Missing PT signature.");
-                return false;
-            }
+            // Write some RIFF information
+            writer.Write(new[] { 'R', 'I', 'F', 'F' });
+            writer.Write((uint)(numberSamples * (bitsPerSample / 8) + 36));
+            writer.Write(new[] { 'W', 'A', 'V', 'E' });
+            writer.Write(new[] { 'f', 'm', 't', ' ' });
+            writer.Write((uint)16);
 
-            Input.ReadBytes(2);
+            // Write the format chunk
+            writer.Write((ushort)1);
+            writer.Write((ushort)channels);
+            writer.Write((uint)sampleRate);
+            writer.Write((uint)bitsPerSample / 8 * sampleRate * channels);
+            writer.Write((ushort)(bitsPerSample / 8 * channels));
+            writer.Write((ushort)bitsPerSample);
+
+            // Write the data information
+            writer.Write(new[] { 'd', 'a', 't', 'a' });
+            writer.Write((uint)(numberSamples * (bitsPerSample / 8)));
+        }
+
+        uint ParsePTHeader(BinaryReader reader)
+        {
+            var totalSampleCount = 0u;
+            reader.ReadBytes(2);
 
             // Data offset
-            var DataOffset = Input.ReadUInt32();
+            var dataOffset = reader.ReadUInt32();
 
             // Read in the header (code borrowed from Valery V. Anisimovsky (samael@avn.mccme.ru) )
-            var bInHeader = true;
-            while (bInHeader)
+            var inHeader = true;
+            while (inHeader)
             {
-                var Byte = Input.ReadByte();
-                switch (Byte) // parse header code
+                var value = reader.ReadByte();
+                switch (value) // parse header code
                 {
                     case 0xFF: // end of header
-                        bInHeader = false;
+                        inHeader = false;
                         break;
                     case 0xFE: // skip
                     case 0xFC: // skip
                         break;
                     case 0xFD: // subheader starts...
-                        var bInSubHeader = true;
-                        while (bInSubHeader)
+                        var inSubHeader = true;
+                        while (inSubHeader)
                         {
-                            Byte = Input.ReadByte();
-                            switch (Byte) // parse subheader code
+                            value = reader.ReadByte();
+                            switch (value) // parse subheader code
                             {
                                 case 0x83:
-                                    Byte = Input.ReadByte();
-                                    var CompressionType = ReadBytes(Input, Byte);
+                                    value = reader.ReadByte();
+                                    var compressionType = ReadBytes(reader, value);
                                     break;
                                 case 0x85:
-                                    Byte = Input.ReadByte();
-                                    m_TotalSampleCount = ReadBytes(Input, Byte);
+                                    value = reader.ReadByte();
+                                    totalSampleCount = ReadBytes(reader, value);
                                     break;
                                 case 0xFF:
                                     break;
                                 case 0x8A: // end of subheader
-                                    bInSubHeader = false;
-                                    Byte = Input.ReadByte();
-                                    Input.BaseStream.Seek(Byte, SeekOrigin.Current);
+                                    inSubHeader = false;
+                                    value = reader.ReadByte();
+                                    reader.BaseStream.Seek(value, SeekOrigin.Current);
                                     break;
                                 default: // ???
-                                    Byte = Input.ReadByte();
-                                    Input.BaseStream.Seek(Byte, SeekOrigin.Current);
+                                    value = reader.ReadByte();
+                                    reader.BaseStream.Seek(value, SeekOrigin.Current);
                                     break;
                             }
                         }
                         break;
                     default:
-                        Byte = Input.ReadByte();
-                        if (Byte == 0xFF)
+                        value = reader.ReadByte();
+                        if (value == 0xFF)
                         {
-                            Input.ReadBytes(4);
+                            reader.ReadBytes(4);
                         }
-                        Input.ReadByte();
+                        reader.ReadByte();
                         break;
                 }
             }
 
             // Seek to the data offset
-            Input.BaseStream.Seek(DataOffset, SeekOrigin.Begin);
-            return true;
+            reader.BaseStream.Seek(dataOffset, SeekOrigin.Begin);
+            return totalSampleCount;
         }
 
-        static uint ReadBytes(BinaryReader Input, byte Count)
+        uint ReadBytes(BinaryReader reader, byte count)
         {
-            byte i;
-            byte Byte;
-            uint Result;
-
-            Result = 0;
-            for (i = 0; i < Count; i++)
+            var result = 0u;
+            for (var i = 0; i < count; i++)
             {
-                Byte = Input.ReadByte();
-                Result <<= 8;
-                Result |= Byte;
+                var value = reader.ReadByte();
+                result <<= 8;
+                result |= value;
             }
-            return Result;
+            return result;
         }
 
-        void InitializeDecoder(SM10DecoderPrivate decoderStruct, BinaryReader Input)
+        void InitializeDecoder(M10DecoderPrivate decoderStruct, BinaryReader reader)
         {
-            decoderStruct.CurrentBits = Input.ReadByte();
-            decoderStruct.CompressedData = Input;
+            decoderStruct.CurrentBits = reader.ReadByte();
+            decoderStruct.CompressedData = reader;
             decoderStruct.BitCount = 8;
             decoderStruct.FirstBit = GetBits(decoderStruct, 1);
             decoderStruct.Second4Bits = 32 - GetBits(decoderStruct, 4);
             decoderStruct.FloatTable[0] = (float)(GetBits(decoderStruct, 4) + 1) * 8.0f;
 
-            double AFloat = 1.04 + GetBits(decoderStruct, 6) * 0.001;
-            for (uint i = 0; i < 63; i++)
+            var incCoef = 1.04 + GetBits(decoderStruct, 6) * 0.001;
+            for (var i = 0; i < 63; i++)
             {
-                decoderStruct.FloatTable[i + 1] = (float)(decoderStruct.FloatTable[i] * AFloat);
+                decoderStruct.FloatTable[i + 1] = (float)(decoderStruct.FloatTable[i] * incCoef);
             }
         }
 
-        public uint Decode(short[] OutputBuffer, uint SampleCount)
+        void Decode(M10DecoderPrivate decoderStruct, BinaryWriter writer, uint samplesCount)
         {
-            if (m_TotalSampleCount == 0)
-            {
-                return 0;
-            }
+            var sampleBufferOffset = 432;
 
-            for (uint i = 0; i < SampleCount; i++)
+            for (var i = 0u; i < samplesCount; i++)
             {
-                var Sample = new mtFloatInt
+                var sample = new FloatInt
                 {
                     Int = 0x4B400000
                 };
 
-                if (m_SampleBufferOffset >= 432)
+                if (sampleBufferOffset >= 432)
                 {
-                    try
-                    {
-                        DecodeBlock(m_Input);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(this.FileName);
-                        Console.WriteLine($"The decoder encountered a problem (bug in program). {ex}");
-                        return i;
-                    }
-                    m_SampleBufferOffset = 0;
+                    DecodeBlock(decoderStruct);
+                    sampleBufferOffset = 0;
                 }
 
-                Sample.Float += m_Input.SampleBuffer[m_SampleBufferOffset];
-                m_SampleBufferOffset++;
-                m_SamplesDecodedSoFar++;
+                sample.Float += decoderStruct.SampleBuffer[sampleBufferOffset];
+                sampleBufferOffset++;
 
-                var Clipped = Sample.Int & 0x1FFFF;
-                if (Clipped > 0x7FFF && Clipped < 0x18000)
+                var clipped = sample.Int & 0x1FFFF;
+                if (clipped > 0x7FFF && clipped < 0x18000)
                 {
-                    if (Clipped >= 0x10000)
+                    if (clipped >= 0x10000)
                     {
-                        Clipped = 0x8000;
+                        clipped = 0x8000;
                     }
                     else
                     {
-                        Clipped = 0x7FFF;
+                        clipped = 0x7FFF;
                     }
                 }
 
-                OutputBuffer[i] = (short)Clipped;
-
-                if (m_SamplesDecodedSoFar >= m_TotalSampleCount)
-                {
-                    return i + 1;
-                }
+                writer.Write((short)clipped);
             }
-            return SampleCount;
         }
 
-        void DecodeBlock(SM10DecoderPrivate decoderStruct)
+        void DecodeBlock(M10DecoderPrivate decoderStruct)
         {
-            float[] TableA = new float[12];
-            float[] TableB = new float[118];
+            var tableA = new float[12];
+            var tableB = new float[118];
 
-            var Bits = GetBits(decoderStruct, 6);
+            var bits = GetBits(decoderStruct, 6);
 
-            var Flag = Bits < decoderStruct.Second4Bits ? 1 : 0;
+            var flag = bits < decoderStruct.Second4Bits ? 1 : 0;
 
-            TableA[0] = (FloatLookupTable[Bits] - decoderStruct.Table1[0]) * 0.25f;
+            tableA[0] = (FloatLookupTable[bits] - decoderStruct.Table1[0]) * 0.25f;
 
             for (uint i = 1; i < 4; i++)
             {
-                Bits = GetBits(decoderStruct, 6);
+                bits = GetBits(decoderStruct, 6);
 
-                TableA[i] = (FloatLookupTable[Bits] - decoderStruct.Table1[i]) * 0.25f;
+                tableA[i] = (FloatLookupTable[bits] - decoderStruct.Table1[i]) * 0.25f;
             }
 
             for (uint i = 4; i < 12; i++)
             {
-                Bits = GetBits(decoderStruct, 5);
+                bits = GetBits(decoderStruct, 5);
 
-                TableA[i] = (FloatLookupTable[Bits + 16] - decoderStruct.Table1[i]) * 0.25f;
+                tableA[i] = (FloatLookupTable[bits + 16] - decoderStruct.Table1[i]) * 0.25f;
             }
 
-            var CurSampleBufPtr = 0;
+            var curSampleBufPtr = 0;
 
-            for (uint i = 216; i < 648; i += 108)
+            for (var i = 216; i < 648; i += 108)
             {
-                var BigTableIndex = i - GetBits(decoderStruct, 8);
+                var bigTableIndex = i - GetBits(decoderStruct, 8);
 
-                var SomeFloat = GetBits(decoderStruct, 4) * 2.0f / 30.0f;
-                var SomeOtherFloat = decoderStruct.FloatTable[GetBits(decoderStruct, 6)];
+                var someFloat = GetBits(decoderStruct, 4) * 2.0f / 30.0f;
+                var someOtherFloat = decoderStruct.FloatTable[GetBits(decoderStruct, 6)];
 
                 if (decoderStruct.FirstBit == 0)
                 {
-                    FunctionThree(decoderStruct, Flag, TableB, 5, 1);
+                    FunctionThree(decoderStruct, flag, tableB, 5, 1);
                 }
                 else
                 {
-                    var IndexAdjust = GetBits(decoderStruct, 1);
-                    Bits = GetBits(decoderStruct, 1);
+                    var indexAdjust = GetBits(decoderStruct, 1);
+                    bits = GetBits(decoderStruct, 1);
 
-                    FunctionThree(decoderStruct, Flag, TableB, 5 + (int)IndexAdjust, 2);
+                    FunctionThree(decoderStruct, flag, tableB, 5 + (int)indexAdjust, 2);
 
-                    if (Bits != 0)
+                    if (bits != 0)
                     {
-                        for (uint j = 0; j < 108; j += 2)
+                        for (var j = 0; j < 108; j += 2)
                         {
-                            TableB[j + 6 - IndexAdjust] = 0;
+                            tableB[j + 6 - indexAdjust] = 0;
                         }
                     }
                     else
                     {
-                        for (uint j = 0; j < 5; j++)
+                        for (var j = 0; j < 5; j++)
                         {
-                            TableB[j] = 0;
-                            TableB[j + 113] = 0;
+                            tableB[j] = 0;
+                            tableB[j + 113] = 0;
                         }
 
-                        FunctionOne(TableB, 6 - (int)IndexAdjust);
-                        SomeOtherFloat *= 0.5f;
+                        FunctionOne(tableB, 6 - (int)indexAdjust);
+                        someOtherFloat *= 0.5f;
                     }
                 }
 
-                for (uint j = 0; j < 108; j++)
+                for (var j = 0; j < 108; j++)
                 {
-                    var a = SomeOtherFloat * TableB[j + 5];
-                    var b = SomeFloat * decoderStruct.BigTable[BigTableIndex + j];
-                    decoderStruct.SampleBuffer[CurSampleBufPtr] = a + b;
-                    CurSampleBufPtr++;
+                    var a = someOtherFloat * tableB[j + 5];
+                    var b = someFloat * decoderStruct.BigTable[bigTableIndex + j];
+                    decoderStruct.SampleBuffer[curSampleBufPtr] = a + b;
+                    curSampleBufPtr++;
                 }
             }
 
-            for (uint i = 0; i < 324; i++)
+            for (var i = 0; i < 324; i++)
             {
                 decoderStruct.BigTable[i] = decoderStruct.SampleBuffer[i + 108];
             }
 
-            for (uint i = 0; i < 12; i++)
+            for (var i = 0; i < 12; i++)
             {
-                decoderStruct.Table1[i] += TableA[i];
+                decoderStruct.Table1[i] += tableA[i];
             }
             FunctionFour(decoderStruct, 0, 1);
 
-            for (uint i = 0; i < 12; i++)
+            for (var i = 0; i < 12; i++)
             {
-                decoderStruct.Table1[i] += TableA[i];
+                decoderStruct.Table1[i] += tableA[i];
             }
             FunctionFour(decoderStruct, 12, 1);
 
-            for (uint i = 0; i < 12; i++)
+            for (var i = 0; i < 12; i++)
             {
-                decoderStruct.Table1[i] += TableA[i];
+                decoderStruct.Table1[i] += tableA[i];
             }
             FunctionFour(decoderStruct, 24, 1);
 
-            for (uint i = 0; i < 12; i++)
+            for (var i = 0; i < 12; i++)
             {
-                decoderStruct.Table1[i] += TableA[i];
+                decoderStruct.Table1[i] += tableA[i];
             }
             FunctionFour(decoderStruct, 36, 33);
-            return;
         }
 
         // ================================= Functions ===============================
@@ -469,214 +407,204 @@ namespace BeastsAndBumpkinsParser
                 9.77431e-1f, 9.8387903e-1f, 9.90327e-1f, 9.9677598e-1f
             };
 
-        uint GetBits(SM10DecoderPrivate decoderStruct, uint Count)
+        uint GetBits(M10DecoderPrivate decoderStruct, uint Count)
         {
-            uint Result;
-            Result = decoderStruct.CurrentBits & BitmaskLookupTable[Count];
+            var result = decoderStruct.CurrentBits & BitmaskLookupTable[Count];
             decoderStruct.BitCount -= Count;
             decoderStruct.CurrentBits >>= (int)Count;
 
             if (decoderStruct.BitCount < 8)
             {
-                var Byte = (decoderStruct.CompressedData.BaseStream.Position == decoderStruct.CompressedData.BaseStream.Length) ? 0 : decoderStruct.CompressedData.ReadByte();
-                var NewBits = (uint)(Byte << (byte)decoderStruct.BitCount);
-                decoderStruct.CurrentBits = NewBits | decoderStruct.CurrentBits;
+                var value = (decoderStruct.CompressedData.BaseStream.Position == decoderStruct.CompressedData.BaseStream.Length) ? 0 : decoderStruct.CompressedData.ReadByte();
+                var newBits = (uint)(value << (byte)decoderStruct.BitCount);
+                decoderStruct.CurrentBits = newBits | decoderStruct.CurrentBits;
                 decoderStruct.BitCount += 8;
             }
-            return Result;
+            return result;
         }
 
-        void SkipBits(SM10DecoderPrivate decoderStruct, uint Count)
+        void SkipBits(M10DecoderPrivate decoderStruct, uint Count)
         {
             decoderStruct.BitCount -= Count;
             decoderStruct.CurrentBits >>= (int)Count;
 
             if (decoderStruct.BitCount < 8)
             {
-                var Byte = (decoderStruct.CompressedData.BaseStream.Position == decoderStruct.CompressedData.BaseStream.Length) ? 0 : decoderStruct.CompressedData.ReadByte();
-                var NewBits = (uint)(Byte << (byte)decoderStruct.BitCount);
-                decoderStruct.CurrentBits = NewBits | decoderStruct.CurrentBits;
+                var value = (decoderStruct.CompressedData.BaseStream.Position == decoderStruct.CompressedData.BaseStream.Length) ? 0 : decoderStruct.CompressedData.ReadByte();
+                var newBits = (uint)(value << (byte)decoderStruct.BitCount);
+                decoderStruct.CurrentBits = newBits | decoderStruct.CurrentBits;
                 decoderStruct.BitCount += 8;
             }
-            return;
         }
 
-        void FunctionOne(float[] Buffer, int index)
+        void FunctionOne(float[] buffer, int bufferIndex)
         {
-            int CurrentPtr = index + 5;
+            var currentBufferPtr = bufferIndex + 5;
 
-            for (uint i = 0; i < 54; i++)
+            for (var i = 0; i < 54; i++)
             {
-                double a = Buffer[CurrentPtr - 8] + Buffer[CurrentPtr - 2];
-                double b = Buffer[CurrentPtr - 10] + Buffer[CurrentPtr];
-                double c = Buffer[CurrentPtr - 6] + Buffer[CurrentPtr - 4];
+                var a = buffer[currentBufferPtr - 8] + buffer[currentBufferPtr - 2];
+                var b = buffer[currentBufferPtr - 10] + buffer[currentBufferPtr];
+                var c = buffer[currentBufferPtr - 6] + buffer[currentBufferPtr - 4];
 
-                Buffer[CurrentPtr - 5] = (float)(a * -0.11459156 + b * 0.01803268 + c * 0.59738597);
-                CurrentPtr += 2;
+                buffer[currentBufferPtr - 5] = (float)(a * -0.11459156 + b * 0.01803268 + c * 0.59738597);
+                currentBufferPtr += 2;
             }
         }
 
-        void FunctionTwo(float[] DecoderStructTable1, float[] Arg2)
+        void FunctionTwo(float[] decoderStructTable1, float[] Arg2)
         {
-            float[] Table = new float[24];
+            var table = new float[24];
 
-            for (byte i = 0; i < 11; i++)
+            for (var i = 0; i < 11; i++)
             {
-                Table[11 - i] = DecoderStructTable1[10 - i];
+                table[11 - i] = decoderStructTable1[10 - i];
             }
 
-            Table[0] = 1.0f;
+            table[0] = 1.0f;
 
-            for (uint i = 0; i < 12; i++)
+            for (var i = 0; i < 12; i++)
             {
-                double Previous;
-                Previous = -Table[11] * DecoderStructTable1[11];
+                var previous = -table[11] * decoderStructTable1[11];
 
-                for (uint CounterC = 0; CounterC < 11; CounterC++)
+                for (var counter = 0; counter < 11; counter++)
                 {
-                    float PtrA = Table[10 - CounterC];
-                    float PtrB = DecoderStructTable1[10 - CounterC];
+                    var a = table[10 - counter];
+                    var b = decoderStructTable1[10 - counter];
 
-                    Previous -= PtrA * PtrB;
-                    Table[11 - CounterC] = (float)Previous * PtrB + PtrA;
+                    previous -= a * b;
+                    table[11 - counter] = previous * b + a;
                 }
 
-                Table[0] = (float)Previous;
-                Table[i + 12] = (float)Previous;
+                table[0] = previous;
+                table[i + 12] = previous;
 
                 if (i > 0)
                 {
-                    uint CounterA = i;
-                    uint CounterB = i;
-
                     for (uint j = 0; j < i; j++)
                     {
-                        Previous -= Table[11 + i - j] * Arg2[j];
+                        previous -= table[11 + i - j] * Arg2[j];
                     }
                 }
 
-                Arg2[i] = (float)Previous;
+                Arg2[i] = previous;
             }
         }
 
-        void FunctionThree(SM10DecoderPrivate decoderStruct, int Flag, float[] Out, int OutIndex, uint CountInt)
+        void FunctionThree(M10DecoderPrivate decoderStruct, int flag, float[] output, int outputIndex, uint count)
         {
-            if (Flag != 0)
+            if (flag != 0)
             {
-                uint Index = 0;
-                uint HighBits = 0;
+                var index = 0u;
+                var highBits = 0u;
 
                 do
                 {
-                    var Bits = decoderStruct.CurrentBits & 0xFF;
-                    var LookedUpValue = ByteLookupTable[(HighBits << 8) + Bits];
-                    HighBits = LookupTable[LookedUpValue].HighBits;
+                    var bits = decoderStruct.CurrentBits & 0xFF;
+                    var lookedUpValue = ByteLookupTable[(highBits << 8) + bits];
+                    highBits = LookupTable[lookedUpValue].HighBits;
 
-                    SkipBits(decoderStruct, LookupTable[LookedUpValue].SkipBits);
+                    SkipBits(decoderStruct, LookupTable[lookedUpValue].SkipBits);
 
-                    if (LookedUpValue > 3)
+                    if (lookedUpValue > 3)
                     {
-                        Out[OutIndex + Index] = LookupTable[LookedUpValue].Float;
-                        Index += CountInt;
+                        output[outputIndex + index] = LookupTable[lookedUpValue].Float;
+                        index += count;
                     }
-                    else if (LookedUpValue > 1)
+                    else if (lookedUpValue > 1)
                     {
-                        var Bits2 = GetBits(decoderStruct, 6) + 7;
+                        bits = GetBits(decoderStruct, 6) + 7;
 
-                        if (Bits2 * CountInt + Index > 108)
+                        if (bits * count + index > 108)
                         {
-                            Bits2 = (108 - Index) / CountInt;
+                            bits = (108 - index) / count;
                         }
 
-                        if (Bits2 > 0)
+                        if (bits > 0)
                         {
-                            var Ptr = Index;
-                            Index += Bits2 * CountInt;
-
-                            for (uint i = 0; i < Bits2; i++)
+                            for (var i = 0; i < bits; i++)
                             {
-                                Out[OutIndex + Ptr] = 0;
-                                Ptr += CountInt;
+                                output[outputIndex + index + count * i] = 0;
                             }
+                            index += bits * count;
                         }
                     }
                     else
                     {
-                        int Count = 7;
+                        var bitsCount = 7;
 
                         while (GetBits(decoderStruct, 1) == 1)
                         {
-                            Count++;
+                            bitsCount++;
                         }
 
                         if (GetBits(decoderStruct, 1) != 0)
                         {
-                            Out[OutIndex + Index] = Count;
+                            output[outputIndex + index] = bitsCount;
                         }
                         else
                         {
-                            Out[OutIndex + Index] = -Count;
+                            output[outputIndex + index] = -bitsCount;
                         }
 
-                        Index += CountInt;
+                        index += count;
                     }
-                } while (Index < 108);
+                } while (index < 108);
             }
             else
             {
-                uint Index = 0;
+                var index = 0u;
 
                 do
                 {
                     switch (decoderStruct.CurrentBits & 0x3)
                     {
                         case 1:
-                            Out[OutIndex + Index] = -2.0f;
+                            output[outputIndex + index] = -2.0f;
                             SkipBits(decoderStruct, 2);
                             break;
                         case 3:
-                            Out[OutIndex + Index] = 2.0f;
+                            output[outputIndex + index] = 2.0f;
                             SkipBits(decoderStruct, 2);
                             break;
                         case 2:
                         case 0:
-                            Out[OutIndex + Index] = 0f;
+                            output[outputIndex + index] = 0f;
                             SkipBits(decoderStruct, 1);
                             break;
                         default:
                             break;
                     }
-                    Index += CountInt;
-                } while (Index < 108);
+                    index += count;
+                } while (index < 108);
             }
-            return;
         }
 
-        void FunctionFour(SM10DecoderPrivate decoderStruct, uint Index, uint Count)
+        void FunctionFour(M10DecoderPrivate decoderStruct, uint index, uint count)
         {
-            float[] Buffer = new float[12];
-            FunctionTwo(decoderStruct.Table1, Buffer);
-            var SampleBufferPtr = Index;
+            var buffer = new float[12];
+            FunctionTwo(decoderStruct.Table1, buffer);
+            var sampleBufferPtr = index;
 
-            for (uint i = 0; i < Count; i++)
+            for (uint i = 0; i < count; i++)
             {
                 for (uint k = 0; k < 12; k++)
                 {
-                    double Summation = 0.0;
-                    for (uint j = 0; j < 12; j++)
+                    var sum = 0.0;
+                    for (var j = 0; j < 12; j++)
                     {
-                        Summation += decoderStruct.Table2[j] * Buffer[(j + k) % 12];
+                        sum += decoderStruct.Table2[j] * buffer[(j + k) % 12];
                     }
 
-                    double Result = decoderStruct.SampleBuffer[SampleBufferPtr + k] + Summation;
-                    decoderStruct.Table2[11 - k] = (float)Result;
-                    decoderStruct.SampleBuffer[SampleBufferPtr + k] = (float)Result;
+                    double result = decoderStruct.SampleBuffer[sampleBufferPtr + k] + sum;
+                    decoderStruct.Table2[11 - k] = (float)result;
+                    decoderStruct.SampleBuffer[sampleBufferPtr + k] = (float)result;
                 }
-                SampleBufferPtr += 12;
+                sampleBufferPtr += 12;
             }
         }
 
-        class SM10DecoderPrivate
+        class M10DecoderPrivate
         {
             public BinaryReader CompressedData;
             public uint CurrentBits = 0;
@@ -692,7 +620,7 @@ namespace BeastsAndBumpkinsParser
 
 
         [StructLayout(LayoutKind.Explicit)]
-        public struct mtFloatInt
+        public struct FloatInt
         {
             [FieldOffset(0)] public float Float;
             [FieldOffset(0)] public int Int;
