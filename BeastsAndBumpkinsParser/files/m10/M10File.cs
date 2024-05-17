@@ -28,10 +28,6 @@ namespace BeastsAndBumpkinsParser
             using var output = new MemoryStream();
             using var writer = new BinaryWriter(output);
 
-            Console.WriteLine(fileName);
-
-            WriteWaveHeader(writer, 0, 0, 0, 0);
-
             this.Initialize(binr);
 
             short[] Samples = new short[4096];
@@ -97,6 +93,7 @@ namespace BeastsAndBumpkinsParser
             }
             catch (Exception ex)
             {
+                Console.WriteLine(this.FileName);
                 Console.WriteLine($"The decoder could not be initialized (bug in program): {ex}");
             }
             m_SampleBufferOffset = 432;
@@ -229,6 +226,7 @@ namespace BeastsAndBumpkinsParser
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(this.FileName);
                         Console.WriteLine($"The decoder encountered a problem (bug in program). {ex}");
                         return i;
                     }

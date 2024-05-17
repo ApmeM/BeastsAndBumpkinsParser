@@ -37,4 +37,4 @@ Credits
 ==========
 
 - [**BBTools**](https://github.com/JonMagon/BBTools) - Inspiration and the data was taken from there
-- [**Zench from xentax**](https://forum.xen-tax.com/viewtopic.php@p=40921.html#p40921) - C++ parser for m10 files (can be found in BBTools repository above)
+- [**Zench from xen-tax**](https://forum.xen-tax.com/viewtopic.php@p=40921.html#p40921) - C++ parser for m10 files (can be found in BBTools repository above)
