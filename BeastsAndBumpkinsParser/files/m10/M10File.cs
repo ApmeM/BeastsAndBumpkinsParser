@@ -478,7 +478,8 @@ namespace BeastsAndBumpkinsParser
 
             if (decoderStruct.BitCount < 8)
             {
-                var NewBits = (uint)(decoderStruct.CompressedData.ReadByte() << (byte)decoderStruct.BitCount);
+                var Byte = (decoderStruct.CompressedData.BaseStream.Position == decoderStruct.CompressedData.BaseStream.Length) ? 0 : decoderStruct.CompressedData.ReadByte();
+                var NewBits = (uint)(Byte << (byte)decoderStruct.BitCount);
                 decoderStruct.CurrentBits = NewBits | decoderStruct.CurrentBits;
                 decoderStruct.BitCount += 8;
             }
@@ -492,7 +493,8 @@ namespace BeastsAndBumpkinsParser
 
             if (decoderStruct.BitCount < 8)
             {
-                var NewBits = (uint)(decoderStruct.CompressedData.ReadByte() << (byte)decoderStruct.BitCount);
+                var Byte = (decoderStruct.CompressedData.BaseStream.Position == decoderStruct.CompressedData.BaseStream.Length) ? 0 : decoderStruct.CompressedData.ReadByte();
+                var NewBits = (uint)(Byte << (byte)decoderStruct.BitCount);
                 decoderStruct.CurrentBits = NewBits | decoderStruct.CurrentBits;
                 decoderStruct.BitCount += 8;
             }
