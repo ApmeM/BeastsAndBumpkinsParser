@@ -62,6 +62,11 @@ namespace BBData
                         result.Add(new BOXFile(entryName, entryData));
                     }
                     else
+                    if (entryName.EndsWith(".M10", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        result.Add(new M10File(entryName, entryData));
+                    }
+                    else
                     {
                         result.Add(new BinaryFile(entryName, entryData));
                     }
