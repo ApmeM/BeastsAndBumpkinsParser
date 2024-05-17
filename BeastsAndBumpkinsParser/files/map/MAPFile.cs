@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
 using SimpleTiled;
-using SpriteViewer;
 
-namespace BBData
+namespace BeastsAndBumpkinsParser
 {
     public class MAPFile : IFile
     {

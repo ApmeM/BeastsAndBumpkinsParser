@@ -1,4 +1,4 @@
-namespace BBData
+namespace BeastsAndBumpkinsParser
 {
     public static class Utils
     {

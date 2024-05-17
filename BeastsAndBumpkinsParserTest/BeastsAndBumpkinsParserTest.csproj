@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\SpriteViewer.csproj" />
+    <ProjectReference Include="..\BeastsAndBumpkinsParser\BeastsAndBumpkinsParser.csproj" />
   </ItemGroup>
 
 </Project>

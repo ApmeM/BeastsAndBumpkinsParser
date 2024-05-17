@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using NUnit.Framework;
 
-namespace test;
+namespace BeastsAndBumpkinsParserTest;
 
 public class Tests
 {

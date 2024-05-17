@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using BBData;
 
-namespace SpriteViewer
+namespace BeastsAndBumpkinsParser
 {
     internal static class Program
     {

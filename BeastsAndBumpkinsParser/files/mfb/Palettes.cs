@@ -1,4 +1,4 @@
-namespace BBData
+namespace BeastsAndBumpkinsParser
 {
     // modified https://bitbucket.org/trass3r/openbb/full-commit/881d183eda96/openbb/io/palette.d
     public class Palettes

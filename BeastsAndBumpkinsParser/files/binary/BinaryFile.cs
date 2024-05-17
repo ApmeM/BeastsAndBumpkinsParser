@@ -1,7 +1,6 @@
 using System.IO;
-using System.Linq;
 
-namespace BBData
+namespace BeastsAndBumpkinsParser
 {
     public class BinaryFile : IFile
     {

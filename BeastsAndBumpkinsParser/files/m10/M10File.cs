@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace BBData
+namespace BeastsAndBumpkinsParser
 {
     public class M10File : IFile
     {
