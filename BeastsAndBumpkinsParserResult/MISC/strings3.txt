@@ -1,0 +1,282 @@
+0:Troppo vicino alle costruzioni nemiche
+1:Troppo lontano dalle tue attuali costruzioni
+2:In questa terra non puoi costruire
+3:Non puoi collegare il sentiero al tuo villaggio
+4:Pausa
+5:predica ai peccatori
+6:guarisci i feriti
+7:mieti il grano
+8:raccogli le mele
+9:mungi le mucche
+10:suona
+11:costruisci edifici
+12:destreggiati
+13:stai fermo
+14:perlustra
+15:seppellisci i cadaveri
+16:speciale
+17:niente
+18:influenza
+19:malattia
+20:peste
+21:niente sesso
+22:contadino
+23:contadina
+24:costruttore
+25:esattore
+26:cavalleggero
+27:arciere
+28:menestrello
+29:monaco
+30:fante
+31:guardia
+32:segnalatore
+33:mago
+34:ragazzo
+35:ragazza
+36:anziano
+37:anziana
+38:prete
+39:cavaliere
+40:attentatore
+41:zombi
+42:trabocco
+43:balestra
+44:lupo
+45:vespa
+46:pipistrello
+47:demone
+48:gigante
+49:vespa succhia sangue
+50:lupo nero
+51:orco
+52:vampiro
+53:sposo
+54:sposa
+55:albero
+56:boschetto
+57:albero magico
+58:sedia
+59:cassa
+60:chiesa
+61:capanna per contadini
+62:forno
+63:fattoria
+64:catasta di legna
+65:cumulo di massi
+66:mucca
+67:vitello
+68:pollo
+69:pulcino
+70:grano
+71:albero
+72:arbusto
+73:melo
+74:pozzo
+75:fabbrica della birra
+76:corporazione dei costruttori
+77:corporazione degli arcieri
+78:corporazione dei menestrelli
+79:corporazione dei cavalleggeri
+80:corporazione dei fanti
+81:prigione
+82:abitante villaggio
+83:creatura
+84:palazzo della città
+85:steccato
+86:cancello
+87:corporazione dei maghi
+88:punta martello
+89:scuderie
+90:muro di pietra
+91:olio
+92:torre
+93:punto d'osservazione
+94:recinzione del cimitero
+95:trappola con punte acuminate
+96:trappola col fuoco
+97:mina
+98:fuoco
+99:fuoco di bivacco
+100:fumo
+101:esplosione
+102:mucca
+103:generatore
+104:trappola individuata
+105:coppa d'argento
+106:coppa d'oro
+107:pozione
+108:elmetto della forza
+109:protezione del cerchio del fuoco
+110:scudo degli dei
+111:crocefisso
+112:chiave magica
+113:cancello magico
+114:leva
+115:pala
+116:mantello dell'invisibilità
+117:anello del potere assoluto
+118:oro
+119:tempio
+120:roccia
+121:postiglione della bandiera
+122:spada sacra
+123:pergamena magica
+124:bara
+125:tomba
+126:sepolcro zombi
+127:melo
+128:cadavere
+129:Fonte
+130:obiettivo
+131:fontana della giovinezza
+132:altare oscuro
+133:luce stradale
+134:pascolo
+135:pascolo scarso
+136:acqua
+137:fango
+138:roccia
+139:sabbia
+140:foresta
+141:foresta verde
+142:tronco
+143:acqua
+144:mucca
+145:pollo
+146:uovo
+147:pinta
+148:mele
+149:pane
+150:grano
+151:latte
+152:tassa
+153:gioco salvato
+154:barra superiore
+155:denaro
+156:Brutte notizie - Nel villaggio non è rimasta nessuna donna in attività!
+157:palla infuocata
+158:lampo
+159:guarda
+160:teletrasporta
+161:invoca zombi
+162:paura
+163:individua trappole
+164:guarisci tutti
+165:estingui fuoco
+166:proteggi
+167:fast food
+168:causa peste
+169:cura peste
+170:benedici
+171:NUOVO GIOCO
+172:CARICA GIOCO
+173:INTRODUZIONE
+174:RICONOSCIMENTI
+175:ESCI
+176:CONTINUA
+177:SALVA GIOCO
+178:RICOMINCIA MISSIONE
+179:ARRENDITI
+180:TORNA AL MENÙ
+181:Inserisci una descrizione per il gioco che salvi
+182:sei sicuro di voler uscire?
+183:Sei sicuro di volerti arrendere?
+184:Sei sicuro di voler ricominciare questa missione?
+185:Il fuoco è divampato in %s!
+186:Il morbo delle mucche esplosive ha colpito ancora!
+187:Uh oh!  Sembra che la dieta degli abitanti alla fine gli abbia fatto effetto!
+188:Uh oh!  Quel cibo doveva essere andato a male...
+189:Oh no! Il demonio ha preso possesso delle menti dei tuoi contadini!
+190:È arrivata una lettera!
+191:brucia il messaggio
+192:rapporto sulla missione
+193:lettera %d
+194:Niente acqua
+195:Niente pane
+196:Niente latte
+197:Niente sidro
+198:Uomini
+199:Donne
+200:Bambini
+201:Pensionati
+202:Uomini corp.
+203:Popolazione
+204:Nascite
+205:Morti
+206:Matrimoni
+207:Pensionamenti
+208:Denaro
+209:Rendita
+210:Uscite
+211:Tasse
+212:Commercio
+213:Felicità
+214:Salute
+215:Età
+216:Crimini
+217:Condanne
+218:Uova
+219:Acqua
+220:Pane
+221:Latte
+222:Sidro
+223:Vita
+224:Popolazione
+225:Abitanti villaggio
+226:Soldi
+227:Consumo
+228:Abbiamo già il nostro numero massimo di %d membri! Crea un altro %s!
+229:Costa %d d'oro associarsi a questa corporazione!  Ti serve più denaro!
+230:Hanno rubato il pane dal forno in %s!
+231:Hanno rubato il latte dalla fattoria in %s!
+232:Hanno rubato il sidro dalla fabbrica della birra in %s!
+233:tonnellata
+234:FURTO
+235:OMICIDIO
+236:AGGRESSIONE
+237:PRIGIONE
+238:TORTURA
+239:ESECUZIONE
+240:Non c'è più memoria!
+241:ERRORE
+242:Il gioco non è stato installato nel computer.
+243:prezzo delle uova
+244:prezzo dell'acqua
+245:prezzo del pane
+246:prezzo del latte
+247:prezzo del sidro
+248:donazione alla chiesa
+249:tassa sulla capanna
+250:spergiuro
+251:furto
+252:aggressione
+253:omicidio
+254:punire con multa
+255:punire con prigione
+256:punire con torsione dei pollici
+257:punire con esecuzione
+258:cartina
+259:casa
+260:statistiche
+261:lettere
+262:primavera
+263:estate
+264:autunno
+265:inverno
+266:Beasts and Bumpkins
+267:Sì
+268:No
+269:Disco pieno! Partita non salvata.
+270:Inserisci il CD-ROM
+271:Premi invio per continuare o escape per terminare
+272:percorso
+273:Demo
+274:Disponibile solo nella versione completa!
+275:Denaro insufficiente!
+276:Troppo difficile per te?
+277:Consigli
+278:Opzioni
+279:Finanza
+280:Mana insufficiente!
+281:Troppo lontano per lanciare incantesimi! Avvicinati.

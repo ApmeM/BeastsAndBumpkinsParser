@@ -1,0 +1,1 @@
+*A continuación construye un Gremio de Constructores. Envía un campesino a este gremio y producirá un constructor que trabajará el doble de rápido.

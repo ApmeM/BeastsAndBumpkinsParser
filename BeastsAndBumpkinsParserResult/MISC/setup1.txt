@@ -1,0 +1,54 @@
+0:Wählen Sie eine Sprache ...
+1:English
+2:Deutsch
+3:Français
+4:Italiano
+5:Español
+6:Wählen Sie Weiter, um fortzufahren.
+7:Beasts and Bumpkins kann auf zwei verschiedene Weisen installiert werden.
+8:Dateien auf Festplatte kopieren, kurze Ladezeiten.
+9:Wenn Sie diese Option wählen, benötigen Sie %d MB freien Festplattenspeicher.
+10:Dateien nicht auf Festplatte kopieren, lange Ladezeiten.
+11:Wenn Sie diese Option wählen, benötigen Sie %d MB freien Festplattenspeicher.
+12:Sie benötigen %d MB freien Festplattenspeicher.
+13:Wählen Sie ein Ziellaufwerk.
+14:Neu
+15:Bitte wählen Sie einen Ordner für die Installation.
+16:Ordner
+17:Setup beginnt nun mit der Installation der Dateien.
+18:Dateien werden kopiert von ...
+19:nach
+20:Bitte warten Sie, bis Setup alle Dateien auf Ihre Festplatte kopiert hat.
+21:Von 
+22:Nach 
+23:Fortschritt
+24:Setup abgeschlossen
+25:Bitte beenden Sie alle geöffneten Anwendungen und starten Sie Ihren Computer neu, bevor Sie Beasts and Bumpkins starten.
+26:Kein Neustart erforderlich
+27:Soll Direct X installiert werden (empfohlen)?
+28:Bitte starten Sie Ihren Computer neu, bevor Sie Beasts and Bumpkins starten.
+29:Installation von DirectX
+30:Soll Microsoft DirectX installiert/aktualisiert werden (empfohlen)?
+31:Fehler bei der Installation von DirectX
+32:Fehler beim Kopieren von "%s" nach "%s"
+33:Bitte führen Sie Setup erneut aus, bevor Sie das Spiel starten.
+34:Setup hat eine bereits bestehende Version des Spiels gefunden. Fortfahren?
+35:Setup
+36:Beasts and Bumpkins
+37:Ja
+38:Nein
+39:Abbrechen
+40:Weiter
+41:Zurück
+42:Beenden
+43:Hilfe
+44:Beasts and Bumpkins wurde auf diesem System nicht installiert.
+45:De-installieren
+46:Beasts and Bumpkins löschen
+47:Fehler
+48:Fehler
+49:Spielen
+50:Erneut installieren
+51:De-installieren
+52:Ende
+53:Lesefehler auf CD: Bitte legen Sie die CD ein und versuchen Sie es erneut.

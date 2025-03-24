@@ -1,0 +1,2 @@
+Findet den Schlupfwinkel des Feindes und löscht ihn von der Landkarte.
+

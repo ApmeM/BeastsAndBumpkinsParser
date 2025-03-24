@@ -1,0 +1,282 @@
+0:Zu nahe an gegnerischen Behausungen.
+1:Zu weit von bestehenden Gebäuden entfernt.
+2:Auf diesem Landstrich kann nicht gebaut werden.
+3:Zu diesem Dorf kann kein Pfad angelegt werden.
+4:Pause
+5:Predigt an die Massen
+6:Wunden heilen
+7:Getreide ernten
+8:Äpfel aufsammeln
+9:Kühe melken
+10:Musik
+11:Gebäude errichten
+12:Jonglieren
+13:Stillgestanden
+14:Patrouillieren
+15:Gefallene bestatten
+16:Extra
+17:Keine Vorräte
+18:Grippe-Epidemie
+19:Lurgitis
+20:Pest
+21:Geschlechtslos
+22:Bauer
+23:Bäuerin
+24:Baumeister
+25:Steuereintreiber
+26:Ritter
+27:Bogenschütze
+28:Spielmann
+29:Mönch
+30:Lakai
+31:Wache
+32:Fahnenjunker
+33:Magier
+34:Junge
+35:Mädchen
+36:Alter Mann
+37:Alte Frau
+38:Priester
+39:Reiter
+40:Bombenleger
+41:Zombie
+42:Katapult
+43:Armbrust
+44:Wolf
+45:Wespe
+46:Fledermaus
+47:Dämon
+48:Riese
+49:Feuerwespe
+50:Schattenwolf
+51:Oger
+52:Vampir
+53:Stallknecht
+54:Braut
+55:Baum
+56:Gebüsch
+57:Schicksalsbaum
+58:Stuhl
+59:Kiste
+60:Kirche
+61:Kate
+62:Bäckerei
+63:Bauernhof
+64:Holzstoß
+65:Steinhaufen
+66:Kuh
+67:Kälbchen
+68:Hühner
+69:Hühner
+70:Weizen
+71:Baum
+72:Setzling
+73:Apfelbaum
+74:Brunnen
+75:Kelterei
+76:Gilde der Baumeister
+77:Gilde der Bogenschützen
+78:Gilde der Spielmänner
+79:Gilde der Ritter
+80:Gilde der Lakaien
+81:Kerker
+82:Dorfbewohner
+83:Kreatur
+84:Rathaus
+85:Zaun
+86:Tor
+87:Magiergilde
+88:Richtfest
+89:Stall
+90:Steinmauer
+91:öl
+92:Turm
+93:Aussichtsposten
+94:Friedhofszaun
+95:Stachelfalle
+96:Feuerfalle
+97:Mine
+98:Feuer
+99:Lagerfeuer
+100:Rauch
+101:Explosion
+102:Kuh
+103:Generator
+104:Falle geortet
+105:Silberner Kelch
+106:Goldener Kelch
+107:Trank
+108:Helm der Stärke 
+109:Feuerschutz-Ring
+110:Schild der Götter
+111:Kruzifix
+112:Magischer Schlüssel
+113:Magisches Tor
+114:Hebel
+115:Schaufel
+116:Mantel der Unsichtbarkeit 
+117:Ring der Macht 
+118:Gold
+119:Tempel
+120:Fels
+121:Fahnenstange
+122:Heiliges Schwert
+123:Magische Spruchrolle
+124:Sarg
+125:Grab
+126:Zombie-Gruft
+127:Apfelbaum
+128:Leichnam
+129:Quelle
+130:Ziel
+131:Quell der Jugend
+132:Altar des Bösen
+133:Straßenlaterne
+134:Gras
+135:Rasen
+136:Wasser
+137:Morast
+138:Fels
+139:Sand
+140:Wald
+141:Graswald
+142:Vorräte
+143:Wasser
+144:Kuh
+145:Hühner
+146:Ei
+147:Pint
+148:äpfel
+149:Brot
+150:Getreide
+151:Milch
+152:Steuern
+153:Spiel gespeichert
+154:Menüleiste
+155:Bares
+156:Schlechte Nachrichten - Alle aktiven Frauen haben das Dorf verlassen
+157:Feuerball
+158:Blitz 
+159:Weitblick 
+160:Teleport 
+161:Zombie-Beschwörung
+162:Panik
+163:Fallen entdecken
+164:Massenheilung
+165:Wolkenbruch
+166:Schutz
+167:FastFood
+168:Pestilenz
+169:Pest heilen
+170:Gesundheit
+171:NEUES SPIEL
+172:SPIEL LADEN
+173:INTRO
+174:MITWIRKENDE
+175:ABBRECHEN
+176:WEITER
+177:SPIEL SPEICHERN
+178:MISSION NEU BEGINNEN
+179:KAPITULATION
+180:ZURüCK ZUM HAUPTMENü
+181:Gebt eine Beschreibung für das gespeicherte Spiel ein.
+182:Wollt Ihr wirklich schon aufhören?
+183:Ihr wollt also tatsächlich kapitulieren?
+184:Wollt Ihr Euch diese Mission wirklich noch einmal antun?
+185:Feurio, Feurio %s steht in Flammen!
+186:Das Rinderplatzen wurde wieder eingeschleppt!
+187:Uh oh! Die Diät der Dorfbewohner war ja ziemlich erfolgreich, was?
+188:Uh oh! Da war wohl das Haltbarkeitsdatum abgelaufen!
+189:Oh nein! Ihre Bürger sind von einem Dämon besessen!
+190:Wie schön, die Post ist da!
+191:Feuermeldung
+192:Einsatzbesprechung
+193:Brief Nummer %d
+194:Kein Wasser mehr 
+195:Kein Brot mehr
+196:Keine Milch mehr
+197:Kein Apfelwein mehr
+198:Männer
+199:Frauen
+200:Kinder
+201:Im Ruhestand
+202:Gilden-Mitglieder
+203:Bevölkerung
+204:Geburten
+205:Todesfälle
+206:Hochzeiten
+207:Ruhestand
+208:Bargeld
+209:Einkünfte
+210:Ausgaben
+211:Steuern
+212:Handel
+213:Zufriedenheit
+214:Gesundheit
+215:Altersstruktur
+216:Verbrechen
+217:Verurteilungen
+218:Eier
+219:Wasser
+220:Brot
+221:Milch
+222:Apfelwein
+223:Lebenserwartung
+224:Bevölkerung
+225:Bürger
+226:Geld
+227:Konsum
+228:Wir haben bereits die maximale Mitgliederzahl von %d erreicht. Bauen Sie eine %s.
+229:Die Aufnahme in diese Gilde kostet %d Goldstücke! Sie sollten vielleicht vorher ein wenig Geld verdienen!
+230:In %s wurde aus der Bäckerei Brot geraubt!
+231:Aus einem Bauernhof in %s wurde Milch geraubt!
+232:Aus der Kelterei in %s wurden große Mengen Apfelwein geraubt!
+233:Tonne
+234:STEHLEN
+235:MORD
+236:KöRPERVERLETZUNG
+237:KERKER
+238:FOLTER
+239:HINRICHTUNG
+240:Kein freier Speicherplatz
+241:FEHLER
+242:Das Spiel wurde auf diesem System nicht installiert
+243:Preis für Eier
+244:Preis für Wasser
+245:Preis für Brot
+246:Preis für Milch
+247:Preis für Apfelwein
+248:Kirchenspende
+249:Hüttensteuer
+250:Fluchen
+251:Stehlen
+252:Körperverletzung
+253:Mord
+254:Geldstrafe
+255:Gefängnisstrafe
+256:Daumenschrauben
+257:Hinrichtung
+258:Karte
+259:Heimat
+260:Statistiken
+261:Briefe
+262:Frühling
+263:Sommer
+264:Herbst
+265:Winter
+266:Beasts and Bumpkins
+267:Ja
+268:Nein
+269:Speicher voll. Spiel nicht gespeichert.
+270:Bitte legen Sie die CD ein.
+271:Zum Fortfahren ENTER oder zum Verlassen ESC drücken.
+272:Pfad
+273:Demo
+274:Nur in der kompletten Version verfügbar!
+275:Nicht genügend Geld!
+276:Zu schwer?
+277:Hilfe
+278:Optionen
+279:Finanzen
+280:Nicht genügend Mana!
+281:Zu weit entfernt! Ihr müßt näher ran.

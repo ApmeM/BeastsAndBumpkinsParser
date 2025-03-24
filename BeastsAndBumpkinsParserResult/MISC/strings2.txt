@@ -1,0 +1,282 @@
+0:Constructions ennemies trop proches
+1:Trop loin de vos constructions
+2:Impossible de construire sur ce terrain
+3:Création d'un chemin menant à votre village impossible
+4:Pause
+5:Sermon à la paroisse
+6:Soigner les blessés
+7:Moissonner
+8:Cueillir des pommes
+9:Traire les vaches
+10:Jouer de la musique
+11:Construire des bâtiments
+12:Jongleur
+13:Se reposer
+14:Patrouiller
+15:Enterrer cadavres
+16:Spécial
+17:Vide
+18:Grippe
+19:Contagion
+20:Peste
+21:Assexué
+22:Vilain
+23:Vilaine
+24:Bâtisseur
+25:Percepteur
+26:Chevalier
+27:Archer
+28:Troubadour
+29:Moine
+30:Fantassin
+31:Garde
+32:Porte-bannière
+33:Mage
+34:Garçon
+35:Fille
+36:Vieil homme
+37:Vieille femme
+38:Prêtre
+39:Cavalier
+40:Artificier
+41:Zombie
+42:Catapulte
+43:Arbalète
+44:Loup
+45:Guêpe
+46:Chauve-souris
+47:Démon
+48:Géant
+49:Guêpe sanguinaire
+50:Loup noir
+51:Ogre
+52:Vampire
+53:Promis
+54:Promise
+55:Arbre
+56:Buisson
+57:Arbre sinistre
+58:Banc
+59:Caisse
+60:Eglise
+61:Chaumière
+62:Boulangerie
+63:Ferme
+64:Réserve de bois
+65:Réserve de pierres
+66:Vache
+67:Veau
+68:Poulet
+69:Poussin
+70:Blé
+71:Arbre
+72:Arbuste
+73:Pommier
+74:Puits
+75:Cidrerie
+76:Guilde des bâtisseurs
+77:Guilde des archers
+78:Guilde des troubadours
+79:Guilde des chevaliers
+80:Guilde des fantassins
+81:Prison
+82:Manants
+83:Créature
+84:Hôtel de ville
+85:Clôture
+86:Barrière
+87:Guilde des mages
+88:Dernière pierre
+89:Ecurie
+90:Mur de pierres
+91:Pétrole
+92:Tour
+93:Tour de guêt
+94:Murs du cimetière
+95:Piques d'acier
+96:Fosse enflammée
+97:Mine
+98:Feu
+99:Feu de camp
+100:Fumée
+101:Explosion
+102:Vache
+103:Générateur
+104:Piège détecté
+105:Calice en argent
+106:Calice en or
+107:Potion
+108:Casque de puissance
+109:Anneau pare-feu
+110:Bouclier divin
+111:Crucifix
+112:Clé magique
+113:Porte magique
+114:Levier
+115:Pelle
+116:Cape d'invisibilité
+117:Anneau de pouvoir absolu
+118:Or
+119:Temple
+120:Rocher
+121:Porte-bannière
+122:Epée sacrée
+123:Parchemin magique
+124:Cercueil
+125:Tombe
+126:Tombe de zombie
+127:Pommier
+128:Cadavre
+129:Source
+130:Cible
+131:Fontaine de Jouvence
+132:Autel de l'Ombre
+133:Réverbère
+134:Herbe		
+135:Prairie
+136:Eau
+137:Boue
+138:Rocher
+139:Sable
+140:Forêt
+141:Forêt verdoyante
+142:Réserves
+143:Eau
+144:Vache
+145:Poulet
+146:Oeuf
+147:Pinte
+148:Pommes
+149:Pain
+150:Grain
+151:Lait
+152:Impôt
+153:Partie sauvegardée
+154:Barre supérieure
+155:Liquidités
+156:Mauvaise nouvelle - Plus de paysanne nubile dans le village!
+157:Boule de feu
+158:Eclair
+159:Vision
+160:Téléportation
+161:Invocation de zombie
+162:Terreur
+163:Détecter pièges
+164:Guérison globale
+165:Eteindre incendie
+166:Protection
+167:Croissance rapide
+168:Déclencher peste
+169:Eradiquer peste
+170:Bénédiction
+171:NOUVELLE PARTIE
+172:CHARGER PARTIE
+173:INTRO
+174:GéNéRIQUE
+175:QUITTER
+176:CONTINUER
+177:SAUVEGARDER PARTIE
+178:RECOMMENCER MISSION
+179:CAPITULER
+180:RETOUR AU MENU PRINCIPAL
+181:Décrire votre partie sauvegardée
+182:Voulez-vous quitter?
+183:Voulez-vous capituler?
+184:Voulez-vous recommencer la mission?
+185:Un incendie s'est déclaré à %s!
+186:L'épidémie d'explosite bovine sévit à nouveau!
+187:Oh oh!  On dirait que les villageois ont suivi un régime plutôt draconien!
+188:Aie Aie! La nourriture était périmée!
+189:Oh non! L'âme du Démon s'est emparé du village!
+190:Un pli est arrivé
+191:Brûler message
+192:Détails mission
+193:Lettre %d
+194:Pas d'eau
+195:Pas de pain
+196:Pas de lait
+197:Pas de cidre
+198:Hommes
+199:Femmes
+200:Enfants
+201:Veillards
+202:Professionnels
+203:Population
+204:Naissances
+205:Décès
+206:Mariages
+207:Retraites
+208:Liquidités
+209:Revenus
+210:Dépenses
+211:Impôt
+212:Commerce
+213:Joie
+214:Santé 
+215:Age
+216:Crimes
+217:Convictions
+218:Oeufs
+219:Eau
+220:Pain
+221:Lait
+222:Cidre
+223:Vie
+224:Population
+225:Manants
+226:Argent
+227:Consommation
+228:Nous avons atteint le maximum avec %d membres! Construisez un autre %s!
+229:Pour appartenir à cette guilde, il vous en coûtera %d or! Vous avez besoin de plus d'argent!
+230:Du pain a été dérobé dans la boulangerie de %s!
+231:Du lait a été dérobé dans la ferme de %s!
+232:Du cidre a été dérobé dans la fabrique de %s!
+233:Tonne
+234:VOL
+235:MEURTRE
+236:AGRESSION
+237:PRISON
+238:TORTURE
+239:EXECUTION
+240:Mémoire insuffisante!
+241:ERREUR
+242:Le jeu n'est pas installé sur votre ordinateur
+243:Prix des oeufs
+244:Prix de l'eau
+245:Prix du pain
+246:Prix du lait
+247:Prix du cidre
+248:Don à l'église
+249:Impôt foncier
+250:Injures
+251:Vol
+252:Agression
+253:Meurtre
+254:Châtiment avec amende
+255:Châtiment avec emprisonnement
+256:Châtiment avec Poucettes
+257:Châtiment avec exécution
+258:Carte
+259:Base
+260:Statistiques
+261:Lettres
+262:Printemps
+263:Eté
+264:Automne
+265:Hiver
+266:Démons et Manants
+267:Oui
+268:Non
+269:Disque saturé! Sauvegarde impossible
+270:Insérez le CD-ROM
+271:Appuyez sur Entrée pour continuer ou Echap pour quitter
+272:chemin
+273:Démo
+274:Uniquement disponible dans la version complète!
+275:Pas suffisamment de liquidités!
+276:Trop dur pour vous?
+277:Astuces
+278:options
+279:finances
+280:Pas assez de mana!
+281:Trop loin pour jeter le sort!

@@ -1,0 +1,1 @@
+*Placing water wells will reduce peasant thirst and increase their lifespan.

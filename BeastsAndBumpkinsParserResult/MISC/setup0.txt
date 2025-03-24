@@ -1,0 +1,56 @@
+0:Select language...
+1:English
+2:Deutsch
+3:Français
+4:Italiano
+5:Español
+6:To continue, click Next.
+7:Beasts and Bumpkins can be installed under two different 
+configurations.
+8:Maximum disk space, fast loading
+9:Choosing this option will reserve %dMb of disk space for the game.
+10:Minimum disk space, slow loading
+11:Choosing this option will reserve %dMb of disk space for the game.
+12:You require %dMb of free disk space.
+13:Select the drive to install to...
+14:Refresh
+15:Please specify the sub-directory to install to...
+16:Directory
+17:Setup is now ready to copy files to your computer.
+18:Files will be copied from...
+19:to...
+20:Please wait while setup copies files to your system...
+21:From
+22:To
+23:Total progress
+24:Setup is complete.
+25:Please shutdown all other applications and reboot your computer 
+before you run Beasts and Bumpkins.
+26:No reboot is required.
+27:Do you wish to install DirectX 3 (recommended)
+28:Your computer must now be restarted before you can play Beasts and 
+Bumpkins.
+29:DirectX Installation
+30:Do you wish to install/upgrade Microsoft DirectX (recommended)?
+31:There has been an error installing DirectX.
+32:Unable to copy '%s' to '%s'.
+33:You will have to run setup again before you can play.
+34:Setup has detected a previous installation.\nContinue?
+35:Setup
+36:Beasts and Bumpkins
+37:Yes
+38:No
+39:Cancel
+40:Next
+41:Prev
+42:Finish
+43:Help
+44:Beasts and Bumpkins has not been installed on this machine!
+45:Uninstall
+46:Removing Beasts and Bumpkins...
+47:There has been an error!
+48:Error
+49:Play
+50:Reinstall
+51:Uninstall
+52:Exit

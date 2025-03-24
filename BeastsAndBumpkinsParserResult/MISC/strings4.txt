@@ -1,0 +1,282 @@
+0:Demasiado cerca de los edificios enemigos
+1:Demasiado lejos de tus edificios
+2:No se puede construir en esta tierra
+3:No se puede hacer un camino hasta tu aldea
+4:Pausa
+5:predicar a los pecadores
+6:curar al herido
+7:cosechar grano
+8:recoger manzanas
+9:leche
+10:tocar música
+11:construir edificios
+12:hacer juegos malabares
+13:permanecer quieto
+14:patrullar
+15:enterrar cadáveres
+16:especial
+17:nada
+18:gripe
+19:lurgititis
+20:plaga
+21:sin sexo
+22:campesino
+23:campesina
+24:constructor
+25:recaudador
+26:caballero
+27:arquero
+28:juglar
+29:monje
+30:lacayo
+31:guardia
+32:abanderado
+33:mago
+34:chico
+35:chica
+36:anciano
+37:anciana
+38:sacerdote
+39:caballero
+40:terrorista
+41:zombi
+42:catapulta 
+43:ballesta 
+44:lobo
+45:avispa
+46:murciélago
+47:demonio
+48:gigante
+49:avispa venenosa
+50:lobo negro
+51:ogro
+52:vampiro
+53:novio
+54:novia
+55:árbol
+56:arbustos
+57:árbol extraño
+58:silla
+59:cajón
+60:iglesia
+61:choza de campesino
+62:panadería
+63:granja
+64:maderos
+65:piedras
+66:vaca
+67:ternero
+68:gallina
+69:pollo
+70:trigo
+71:árbol
+72:árbol joven
+73:manzano
+74:pozo
+75:Sidrería
+76:gremio de constructores
+77:gremio de arqueros
+78:gremio de juglares
+79:gremio de caballeros
+80:gremio de lacayos
+81:cárcel
+82:aldeano
+83:criatura
+84:ayuntamiento
+85:valla
+86:puerta
+87:gremio de magos
+88:remate
+89:establos
+90:muro de piedra
+91:aceite
+92:torre
+93:puesto de observación
+94:valla del cementerio
+95:trampa de pinchos
+96:trampa de fuego
+97:mina
+98:fuego
+99:fuego de acampada
+100:humo
+101:explosión
+102:vaca
+103:generador
+104:trampa detectada
+105:copa de plata
+106:copa de oro
+107:poción
+108:casco de resistencia
+109:anillo de protección contra el fuego
+110:escudo de los dioses
+111:crucifijo
+112:llave mágica
+113:puerta mágica
+114:palanca
+115:pala
+116:manto de invisibilidad
+117:anillo de poder absoluto
+118:oro
+119:templo
+120:roca
+121:asta
+122:espada sagrada
+123:pergamino mágico
+124:cofre
+125:tumba
+126:tumba zombi
+127:manzano
+128:cadáver
+129:manantial
+130:objetivo
+131:fuente de la juventud
+132:altar oscuro
+133:farola
+134:hierba
+135:hierba clara
+136:agua
+137:barro
+138:roca
+139:tierra
+140:bosque
+141:bosque verde
+142:existencias
+143:agua
+144:vaca
+145:gallina
+146:huevo
+147:sidra
+148:manzanas
+149:pan
+150:grano
+151:leche
+152:impuestos
+153:partida guardada
+154:barra superior
+155:efectivo
+156:Malas noticias - ¡No te quedan campesinas activas en la aldea!
+157:bola de fuego
+158:relámpago
+159:ver
+160:teleportador
+161:invocar zombi
+162:miedo
+163:detectar trampas
+164:curación masiva
+165:apagar fuego
+166:proteger
+167:comida rápida
+168:causar plaga
+169:curar plaga
+170:bendecir
+171:NUEVA PARTIDA
+172:CARGAR PARTIDA
+173:INTRO
+174:CREDITOS
+175:SALIR
+176:CONTINUAR
+177:GUARDAR PARTIDA
+178:REINICIAR MISION
+179:RENDIRSE
+180:VOLVER AL MENU
+181:Escribe una descripción para tu partida
+182:¿Seguro que quieres salir?
+183:¿Seguro que quieres rendirte?
+184:¿Seguro que quieres reiniciar la misión?
+185:¡El fuego ha estallado en %s!
+186:¡La enfermedad de las vacas explosivas ataca de nuevo!
+187:¡Uh oh! ¡Creo que se te ha ido la mano con la dieta de los aldeanos!
+188:¡Uh oh! Esa comida debía estar pasada
+189:¡Oh no! ¡El demonio ha poseído a tus aldeanos!
+190:¡Ha llegado una carta!
+191:mensaje ardiente
+192:informe de la misión
+193:carta %d
+194:No hay agua
+195:No hay pan
+196:No hay leche
+197:No hay sidra
+198:Hombres
+199:Mujeres
+200:Niños
+201:Jubilados
+202:en Gremios
+203:Población
+204:Nacimientos
+205:Muertes
+206:Bodas
+207:Jubilaciones
+208:Efectivo
+209:Ingresos
+210:Gastos
+211:Impuestos
+212:Negocio
+213:Felicidad
+214:Salud
+215:Edad
+216:Crímenes
+217:Condenas
+218:Huevos
+219:Agua
+220:Pan
+221:Leche
+222:Sidra
+223:Vida
+224:Población
+225:Aldeanos
+226:Dinero
+227:Consumo
+228:¡Ya tenemos los %d miembros posibles! ¡Construye otro %s!
+229:Cuesta %d en oro reunir este gremio! ¡Necesitas más efectivo!
+230:¡Han robado pan en la panadería de %s!
+231:¡Han robado leche en la granja de %s!
+232:¡Han robado sidra en la sidrería de %s!
+233:tonelada
+234:ROBO
+235:ASESINATO
+236:ASALTO
+237:PRISION
+238:TORTURA
+239:EJECUCION
+240:¡No hay memoria!
+241:ERROR
+242:El juego no ha sido instalado en esta máquina.
+243:precio de los huevos
+244:precio del agua
+245:precio del pan
+246:precio de la leche
+247:precio de la sidra
+248:donación a la iglesia
+249:impuestos de la choza
+250:juramento
+251:robo
+252:asalto
+253:asesinato
+254:multado
+255:pena de prisión
+256:pena de tornillos en los pulgares
+257:pena de ejecución
+258:mapa
+259:hogar
+260:estadísticas
+261:cartas
+262:primavera
+263:verano
+264:otoño
+265:invierno
+266:Beasts and Bumpkins
+267:Si
+268:No
+269:¡Disco lleno! No se ha guardado la partida.
+270:Por favor inserta el CDROM
+271:Pulsa enter para continuar o escape para salir
+272:camino
+273:Demo
+274:¡Sólo disponible en la versión completa!
+275:¡No tienes suficiente efectivo!
+276:¿Demasiado difícil para ti?
+277:ayudas
+278:opciones
+279:finanzas
+280:¡No hay suficiente maná!
+281:¡Demasiado lejos! Acércate.

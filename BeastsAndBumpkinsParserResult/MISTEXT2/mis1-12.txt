@@ -1,0 +1,1 @@
+Commencez par construire quelques poulaillers. Affichez la barre de menu inférieure et sélectionnez l'icône du poulet. Choisissez un lopin de terre et cliquez avec le bouton gauche de la souris pour construire le poulailler.

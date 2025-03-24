@@ -1,0 +1,54 @@
+0:Choix de la langue
+1:Anglais
+2:Allemand
+3:Français
+4:Italien
+5:Espagñol
+6:Pour continuer, cliquez sur Suivant.
+7:Deux configurations sont possibles pour l'installation de Démons et Manants.
+8:Espace disque dur maximum, chargement rapide.
+9:Cette option nécessite %d Mo d'espace sur le disque dur.
+10:Espace disque dur minimum, chargement lent.
+11:Cette option nécessite %d Mo d'espace sur le disque dur.
+12: %d Mo d'espace sur le disque dur sont nécessaires.
+13:Sélectionner le disque dur pour l'installation.
+14:Rafraîchir
+15:Veuillez spécifier le sous-répertoire d'installation.
+16:Répertoire
+17:Vous pouvez à présent copier les fichiers sur votre ordinateur.
+18:Le fichiers seront copiés de...
+19:à...
+20:Veuillez patienter pendant l'installation des fichiers sur votre ordinateur
+21:De
+22:à
+23:Témoin d'installation
+24:L'installation est terminée.
+25:Veuillez fermer toutes les autres applications et redémarrez votre ordinateur avant de lancer Démons et Manants.
+26:Il n'est pas nécessaire de redémarrer.
+27:Voulez-vous installer DirectX 3 (recommandé)?
+28:Vous devez relancer votre ordinateur avant de jouer à Démons et Manants.
+29:Installation de DirectX
+30:Voulez-vous installer/mettre à jour DirectX de Microsoft (recommandé)?
+31:Erreur lors de l'installation de DirectX.
+32:Copie de '%s' dans '%s' impossible.
+33:Vous devez relancer l'installation avant de jouer.
+34:L'installation a détecté une installation antérieure.\nVoulez-vous continuer?
+35:Installation
+36:Démons et Manants
+37:Oui
+38:Non
+39:Annuler
+40:Suivant
+41:Précédent
+42:Achever
+43:Aide
+44:Démons et Manants n'est pas installé sur cet ordinateur!
+45:Désinstaller
+46:Suppression de Démons et Manants
+47:Une erreur est survenue!
+48:Erreur
+49:Jouer
+50:Réinstaller
+51:Désinstaller
+52:Quitter
+53:Lecture du CD impossible. Insérez le CD et essayez à nouveau.

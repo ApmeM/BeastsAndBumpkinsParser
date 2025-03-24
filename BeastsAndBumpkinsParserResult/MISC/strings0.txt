@@ -1,0 +1,282 @@
+0:Too near enemy buildings
+1:Too far from your existing buildings
+2:Cannot build on this land
+3:Cannot link path to your village
+4:Paused
+5:preach to sinners
+6:heal wounded
+7:harvest grain
+8:gather apples
+9:milk cows
+10:play music
+11:construct buildings
+12:juggle
+13:stand still
+14:patrol
+15:bury corpses
+16:special
+17:none
+18:flu
+19:lurgititis
+20:plague
+21:no sex
+22:male peasant
+23:female peasant
+24:builder
+25:taxman
+26:knight
+27:archer
+28:minstrel
+29:monk
+30:footman
+31:guard
+32:flagman
+33:wizard
+34:boy
+35:girl
+36:oldman
+37:oldwoman
+38:priest
+39:cavalier
+40:bombman
+41:zombie
+42:trebuchet
+43:crossbow
+44:wolf
+45:wasp
+46:bat
+47:demon
+48:giant
+49:blood wasp
+50:dark wolf
+51:ogre
+52:vampire
+53:groom
+54:bride
+55:tree
+56:shrubbery
+57:weird tree
+58:chair
+59:crate
+60:church
+61:peasant hut
+62:bakery
+63:farm
+64:woodpile
+65:rockpile
+66:cow
+67:baby cow
+68:chicken
+69:chick
+70:wheat
+71:tree
+72:young tree
+73:apple tree
+74:well
+75:brewery
+76:builders guild
+77:archers guild
+78:minstrels guild
+79:knights guild
+80:footmans guild
+81:prison
+82:villager
+83:creature
+84:town hall
+85:fence
+86:gate
+87:wizards guild
+88:hammer point
+89:stables
+90:stone wall
+91:oil
+92:tower
+93:lookout post
+94:graveyard fence
+95:spike trap
+96:flame trap
+97:mine
+98:fire
+99:campfire
+100:smoke
+101:explosion
+102:cow
+103:generator
+104:trap detected
+105:silver goblet
+106:gold goblet
+107:potion
+108:helmet of strength
+109:ring of fire protection
+110:shield of the gods
+111:crucifix
+112:magic key
+113:magic gate
+114:lever
+115:shovel
+116:cloak of invisibility
+117:ring of absolute power
+118:gold
+119:temple
+120:rock
+121:flagpost
+122:holy sword
+123:magic scroll
+124:coffin
+125:grave
+126:zombie tomb
+127:apple tree
+128:corpse
+129:spring
+130:target
+131:fountain of youth
+132:dark altar
+133:street lamp
+134:grass
+135:light grass
+136:water
+137:mud
+138:rock
+139:sand
+140:forest
+141:green based forest
+142:stock
+143:water
+144:cow
+145:chicken
+146:egg
+147:pint
+148:apples
+149:bread
+150:grain
+151:milk
+152:tax
+153:game saved
+154:top bar
+155:cash
+156:Bad news - You have no active female peasants left in the village!
+157:fireball
+158:lightning
+159:see
+160:teleport
+161:summon zombie
+162:fear
+163:detect traps
+164:mass heal
+165:quench fire
+166:protect
+167:fast food
+168:cause plague
+169:cure plague
+170:bless
+171:NEW GAME
+172:LOAD GAME
+173:INTRO
+174:CREDITS
+175:QUIT
+176:CONTINUE
+177:SAVE GAME
+178:RESTART MISSION
+179:SURRENDER
+180:BACK TO MENU
+181:Enter a description for your save game
+182:Are you sure you want to quit?
+183:Are you sure you want to surrender?
+184:Are you sure you want to restart this mission?
+185:Fire has broken out in %s!
+186:Exploding cow disease strikes again!
+187:Uh oh!  Looks like the villagers diet has finally caught up with them!
+188:Uh oh!  That food must have been off...
+189:Oh no! The demon has cast his mind into your villagers!
+190:A letter has arrived!
+191:burn message
+192:mission briefing
+193:letter %d
+194:No water
+195:No bread
+196:No milk
+197:No cider
+198:Men
+199:Women
+200:Children
+201:Retired
+202:Guildmen
+203:Population
+204:Births
+205:Deaths
+206:Marriages
+207:Retirements
+208:Cash
+209:Income
+210:Outgoings
+211:Tax
+212:Trade
+213:Happiness
+214:Health
+215:Age
+216:Crimes
+217:Convictions
+218:Eggs
+219:Water
+220:Bread
+221:Milk
+222:Cider
+223:Life
+224:Population
+225:Villagers
+226:Money
+227:Consumption
+228:We already have our maximum of %d members!  Build another %s!
+229:It costs %d gold to join this guild!  You need more cash!
+230:Bread has been stolen from the bakery in %s!
+231:Milk has been stolen from the farmhouse in %s!
+232:Cider has been stolen from the brewery in %s!
+233:ton
+234:THEFT
+235:MURDER
+236:ASSAULT
+237:PRISON
+238:TORTURE
+239:EXECUTION
+240:Out of memory!
+241:ERROR
+242:The game has not been installed on this machine.
+243:price of eggs
+244:price of water
+245:price of bread
+246:price of milk
+247:price of cider
+248:church donation
+249:hut tax
+250:swearing
+251:stealing
+252:assault
+253:murder
+254:punish with fine
+255:punish with prison
+256:punish with thumb screws
+257:punish with execution
+258:map
+259:home
+260:statistics
+261:letters
+262:spring
+263:summer
+264:autumn
+265:winter
+266:Beasts and Bumpkins
+267:Yes
+268:No
+269:Disk full!  Game not saved.
+270:Please insert the CDROM
+271:Press return to continue or escape to quit
+272:path
+273:Demo
+274:Only available in the full version!
+275:Not enough cash!
+276:Too tough for ya?
+277:help tips
+278:options
+279:finance
+280:Not enough mana!
+281:Too far to cast!  Move closer.

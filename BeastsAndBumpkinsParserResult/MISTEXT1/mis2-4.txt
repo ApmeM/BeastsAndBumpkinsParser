@@ -1,0 +1,1 @@
+*Ein Dorfbewohner, der nur herumsitzt? Überprüft, ob sein/ihr Stillstehen-Symbol aktiviert ist.

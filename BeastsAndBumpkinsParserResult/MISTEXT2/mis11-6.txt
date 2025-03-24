@@ -1,0 +1,1 @@
+*Déléguez un percepteur pour collecter les impôts de vos manants. Déterminez leur montant dans l'écran Economies.
